@@ -5,6 +5,8 @@ class Main {
     private width: number;
     private height: number;
 
+    private timeout;
+
     private stars: Star[] = [];
 
     public init(canvas: HTMLCanvasElement) {
@@ -13,12 +15,6 @@ class Main {
         this.width = this.canvas.width;
         this.height = this.canvas.height;
         this.context.translate(this.width / 2, this.height / 2);
-
-        for(let i = 0; i < 200; i++) {
-            const x = this.getRandomNumber(this.width / 2);
-            const y = this.getRandomNumber(this.height / 2);
-            this.stars.push(new Star(x, y));
-        }
     }
 
     private getRandomNumber(max: number) {
@@ -28,10 +24,26 @@ class Main {
         return number;
     }
 
-    public run() {
+    public start(canvas) {
+        this.init(canvas);
+        this.stars = [];
+        const amountOfStars = this.width < this.height ? this.width / 2 : this.height / 2;
+        for(let i = 0; i < amountOfStars; i++) {
+            const x = this.getRandomNumber(this.width / 2);
+            const y = this.getRandomNumber(this.height / 2);
+            this.stars.push(new Star(x, y));
+        }
+
+        this.run(true);
+    }
+
+    public run(newRun: boolean) {
+        if (newRun) {
+            window.clearTimeout(this.timeout);
+        }
         this.update();
         this.draw();
-        setTimeout(() => this.run(), 10);
+        this.timeout = setTimeout(() => this.run(false), 10);
     }
 
     private draw() {

@@ -8,22 +8,31 @@ var Main = (function () {
         this.width = this.canvas.width;
         this.height = this.canvas.height;
         this.context.translate(this.width / 2, this.height / 2);
-        for (var i = 0; i < 200; i++) {
-            var x = this.getRandomNumber(this.width / 2);
-            var y = this.getRandomNumber(this.height / 2);
-            this.stars.push(new Star(x, y));
-        }
     };
     Main.prototype.getRandomNumber = function (max) {
         var number = Math.floor(Math.random() * max) + 1;
         number *= Math.floor(Math.random() * 2) == 1 ? 1 : -1;
         return number;
     };
-    Main.prototype.run = function () {
+    Main.prototype.start = function (canvas) {
+        this.init(canvas);
+        this.stars = [];
+        var amountOfStars = this.width < this.height ? this.width / 2 : this.height / 2;
+        for (var i = 0; i < amountOfStars; i++) {
+            var x = this.getRandomNumber(this.width / 2);
+            var y = this.getRandomNumber(this.height / 2);
+            this.stars.push(new Star(x, y));
+        }
+        this.run(true);
+    };
+    Main.prototype.run = function (newRun) {
         var _this = this;
+        if (newRun) {
+            window.clearTimeout(this.timeout);
+        }
         this.update();
         this.draw();
-        setTimeout(function () { return _this.run(); }, 10);
+        this.timeout = setTimeout(function () { return _this.run(false); }, 10);
     };
     Main.prototype.draw = function () {
         var _this = this;

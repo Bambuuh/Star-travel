@@ -7,9 +7,9 @@ class Star {
     private baseDy: number;
     private dx: number;
     private dy: number;
+    private maxSize = 2;
 
     public angle: number;
-    private maxSize = 2;
     public size: number = 0.5;
 
     private maxSpeed = 7;

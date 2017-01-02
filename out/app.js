@@ -1,7 +1,14 @@
 var main = new Main();
+var canvas;
 window.onload = function () {
-    var canvas = document.getElementById('canvas');
-    main.init(canvas);
-    main.run();
+    canvas = document.getElementById('canvas');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    main.start(canvas);
+};
+window.onresize = function () {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    main.start(canvas);
 };
 //# sourceMappingURL=app.js.map
