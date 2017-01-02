@@ -1,12 +1,14 @@
 var Star = (function () {
     function Star(x, y) {
-        this.maxSize = 2;
-        this.size = 0.5;
+        this.opacity = 0;
+        this.size = 0;
+        this.maxSize = 1;
         this.maxSpeed = 7;
         this.init(x, y);
     }
     Star.prototype.update = function (width) {
-        this.size = (this.getDistance() / (width / 2)) * this.maxSize;
+        this.size = ((this.getDistance() / (width / 2)) * this.maxSize);
+        this.opacity = (this.size / 3 * 1) + 0.3;
         this.speed = (this.getDistance() / (width / 2)) * this.maxSpeed;
         this.dx = this.speed * Math.sin(this.angle);
         this.dy = this.speed * Math.cos(this.angle);
@@ -23,6 +25,7 @@ var Star = (function () {
     };
     Star.prototype.init = function (x, y) {
         this.maxSpeed = Math.random() * (7 - 1 + 1) + 1;
+        this.maxSize = this.maxSpeed / 5 * 1.8;
         this.size = 0.5;
         this.x = x;
         this.y = y;

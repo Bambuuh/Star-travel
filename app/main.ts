@@ -67,7 +67,7 @@ class Main {
     private drawStar(star: Star) {
         this.context.beginPath();
         this.context.arc(star.x, star.y, star.size, 0, 2 * Math.PI, false);
-        this.context.fillStyle = 'white';
+        this.context.fillStyle = `rgba(255,255,255,${star.opacity})`;
         this.context.fill()
     }
 

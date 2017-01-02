@@ -2,25 +2,27 @@ class Star {
 
     public x: number;
     public y: number;
+    public opacity = 0;
 
     private baseDx: number
     private baseDy: number;
     private dx: number;
     private dy: number;
-    private maxSize = 2;
+    private speed;
 
     public angle: number;
-    public size: number = 0.5;
+    public size: number = 0;
 
+    private maxSize = 1;
     private maxSpeed = 7;
-    private speed;
 
     constructor(x: number, y: number) {
         this.init(x, y);
     }
 
     public update(width: number) {
-        this.size = (this.getDistance() / (width / 2)) * this.maxSize;
+        this.size = ((this.getDistance() / (width / 2)) * this.maxSize);
+        this.opacity = (this.size / 3 * 1) + 0.3;
 
         this.speed = (this.getDistance() / (width / 2)) * this.maxSpeed;
 
@@ -43,8 +45,8 @@ class Star {
     }
 
     public init(x:number, y: number) {
-
         this.maxSpeed = Math.random() * (7 - 1 + 1) + 1;
+        this.maxSize = this.maxSpeed / 5 * 1.8;
 
         this.size = 0.5;
         this.x = x; 
