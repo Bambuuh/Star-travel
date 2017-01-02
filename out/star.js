@@ -7,8 +7,8 @@ var Star = (function () {
         this.init(x, y);
     }
     Star.prototype.update = function (width) {
-        this.size = ((this.getDistance() / (width / 2)) * this.maxSize);
-        this.opacity = (this.size / 3 * 1) + 0.3;
+        this.size = ((this.getDistance() / (width / 2)) * this.maxSize) + 0.5;
+        this.opacity = (this.size / 3 * 1);
         this.speed = (this.getDistance() / (width / 2)) * this.maxSpeed;
         this.dx = this.speed * Math.sin(this.angle);
         this.dy = this.speed * Math.cos(this.angle);
