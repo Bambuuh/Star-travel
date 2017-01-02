@@ -27,7 +27,7 @@ class Main {
     public start(canvas) {
         this.init(canvas);
         this.stars = [];
-        const amountOfStars = this.width < this.height ? this.width / 2 : this.height / 2;
+        const amountOfStars = this.width < this.height ? this.width / 1.5 : this.height / 1.5;
         for(let i = 0; i < amountOfStars; i++) {
             const x = this.getRandomNumber(this.width / 2);
             const y = this.getRandomNumber(this.height / 2);
@@ -57,8 +57,8 @@ class Main {
         this.stars.forEach((star, i) => {
             star.update(this.width);
             if (star.x > (this.width / 2) || star.x < -(this.width / 2) || star.y > (this.height / 2) || star.y < -(this.height / 2) ) {
-                const x = this.getRandomNumber(this.width / 4);
-                const y = this.getRandomNumber(this.height / 4);
+                const x = this.getRandomNumber(this.width / 6);
+                const y = this.getRandomNumber(this.height / 6);
                 star.init(x, y);
             }
         });
@@ -69,12 +69,5 @@ class Main {
         this.context.arc(star.x, star.y, star.size, 0, 2 * Math.PI, false);
         this.context.fillStyle = `rgba(255,255,255,${star.opacity})`;
         this.context.fill()
-    }
-
-    private getRandomStarPos() {
-        return {
-            x: this.getRandomNumber(this.width / 2),
-            y: this.getRandomNumber(this.height / 2),
-        }
     }
 }

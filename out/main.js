@@ -17,7 +17,7 @@ var Main = (function () {
     Main.prototype.start = function (canvas) {
         this.init(canvas);
         this.stars = [];
-        var amountOfStars = this.width < this.height ? this.width / 2 : this.height / 2;
+        var amountOfStars = this.width < this.height ? this.width / 1.5 : this.height / 1.5;
         for (var i = 0; i < amountOfStars; i++) {
             var x = this.getRandomNumber(this.width / 2);
             var y = this.getRandomNumber(this.height / 2);
@@ -45,8 +45,8 @@ var Main = (function () {
         this.stars.forEach(function (star, i) {
             star.update(_this.width);
             if (star.x > (_this.width / 2) || star.x < -(_this.width / 2) || star.y > (_this.height / 2) || star.y < -(_this.height / 2)) {
-                var x = _this.getRandomNumber(_this.width / 4);
-                var y = _this.getRandomNumber(_this.height / 4);
+                var x = _this.getRandomNumber(_this.width / 6);
+                var y = _this.getRandomNumber(_this.height / 6);
                 star.init(x, y);
             }
         });
@@ -56,12 +56,6 @@ var Main = (function () {
         this.context.arc(star.x, star.y, star.size, 0, 2 * Math.PI, false);
         this.context.fillStyle = "rgba(255,255,255," + star.opacity + ")";
         this.context.fill();
-    };
-    Main.prototype.getRandomStarPos = function () {
-        return {
-            x: this.getRandomNumber(this.width / 2),
-            y: this.getRandomNumber(this.height / 2),
-        };
     };
     return Main;
 }());
