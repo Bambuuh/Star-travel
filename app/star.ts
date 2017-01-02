@@ -44,7 +44,7 @@ class Star {
 
     public init(x:number, y: number) {
 
-        this.maxSpeed = Math.floor(Math.random() * (7 - 3 + 1)) + 3;
+        this.maxSpeed = Math.random() * (7 - 1 + 1) + 1;
 
         this.size = 0.5;
         this.x = x; 
