@@ -11,5 +11,6 @@ window.onload = () => {
 window.onresize =() => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    main.setResizedTrue();
     main.start(canvas);
 };

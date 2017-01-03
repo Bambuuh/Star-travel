@@ -22,7 +22,7 @@ class Star {
 
     public update(width: number) {
         this.size = ((this.getDistance() / (width / 2)) * this.maxSize) + 0.5;
-        this.opacity = (this.size / 3 * 1);
+        this.opacity = (this.size / 3 * 1) * 0.8;
 
         this.speed = (this.getDistance() / (width / 2)) * this.maxSpeed;
 

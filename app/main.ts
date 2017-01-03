@@ -5,8 +5,7 @@ class Main {
     private width: number;
     private height: number;
 
-    private timeout;
-
+    private resized = false;
     private stars: Star[] = [];
 
     public init(canvas: HTMLCanvasElement) {
@@ -24,6 +23,10 @@ class Main {
         return number;
     }
 
+    public setResizedTrue() {
+        this.resized = true;
+    }
+
     public start(canvas) {
         this.init(canvas);
         this.stars = [];
@@ -34,16 +37,17 @@ class Main {
             this.stars.push(new Star(x, y));
         }
 
-        this.run(true);
+        this.run(Date.now());
     }
 
-    public run(newRun: boolean) {
-        if (newRun) {
-            window.clearTimeout(this.timeout);
-        }
+    public run = (timestamp: number) => {
         this.update();
         this.draw();
-        this.timeout = setTimeout(() => this.run(false), 10);
+        if (!this.resized) {
+            requestAnimationFrame(this.run);
+        } else {
+            this.resized = false;
+        }
     }
 
     private draw() {
@@ -65,9 +69,9 @@ class Main {
     }
 
     private drawStar(star: Star) {
+        this.context.fillStyle = `rgba(255,255,255,${star.opacity})`;
         this.context.beginPath();
         this.context.arc(star.x, star.y, star.size, 0, 2 * Math.PI, false);
-        this.context.fillStyle = `rgba(255,255,255,${star.opacity})`;
         this.context.fill()
     }
 }

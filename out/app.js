@@ -9,6 +9,7 @@ window.onload = function () {
 window.onresize = function () {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    main.setResizedTrue();
     main.start(canvas);
 };
 //# sourceMappingURL=app.js.map
